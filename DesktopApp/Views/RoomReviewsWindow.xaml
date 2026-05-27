@@ -1,0 +1,48 @@
+﻿<Window x:Class="DesktopApp.Views.RoomReviewsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DesktopApp.Views"
+        mc:Ignorable="d"
+        Title="Reviews"
+        Height="520" Width="720"
+        WindowStartupLocation="CenterOwner"
+        Icon="/Resources/images/icoproyecto.ico">
+    <Grid >
+        <ListBox ItemsSource="{Binding Reviews}"  HorizontalContentAlignment="Stretch" >
+        <ListBox.ItemTemplate>
+            <DataTemplate>
+               <Border CornerRadius="12" Background="{StaticResource BackgroundBrush2}" Padding="12" Margin="0,0,0,10">
+                    <StackPanel >
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                                <TextBlock Text="{Binding UserDisplay}"
+                                    FontWeight="SemiBold"
+                                    FontSize="16"/>
+                                <TextBlock Grid.Column="1" FontSize="16" FontWeight="SemiBold">
+                                    <Run Text="{Binding Rating}"/>
+                                    <Run Text=" estrellas"/>
+                             </TextBlock>
+                            </Grid>
+
+                        <TextBlock Margin="0,8,0,0" 
+                                       Text="{Binding Comment}"
+                                       TextWrapping="Wrap"
+                                       Opacity="0.85"/>
+
+                        <TextBlock Margin="0,8,0,0"
+                                       Text="{Binding CreatedAt, StringFormat={}{0:dd/MM/yyyy HH:mm}}"
+                                       Opacity="0.6"
+                                       FontSize="12"/>
+                    </StackPanel>
+                </Border>
+            </DataTemplate>
+        </ListBox.ItemTemplate>
+    </ListBox>
+    </Grid>
+</Window>

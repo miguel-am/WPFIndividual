@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="ViewModels\HeaderControlViewModel.cs" />
+    <Compile Remove="ViewModels\NavControlViewModel.cs" />
+    <Compile Remove="Views\Reservation\DashboardView.xaml.cs" />
+    <Compile Remove="Views\UserControl1.xaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\images\icono_proyecto.png" />
+    <None Remove="Resources\images\icoproyecto.ico" />
+    <None Remove="Resources\images\splash.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Remove="Views\Reservation\DashboardView.xaml" />
+    <Page Remove="Views\UserControl1.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\images\icono_proyecto.png" />
+    <Resource Include="Resources\images\icoproyecto.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <SplashScreen Include="Resources\images\splash.png" />
+  </ItemGroup>
+
+</Project>

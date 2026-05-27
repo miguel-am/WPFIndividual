@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="DesktopApp.Controls.HeaderControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" Height="64" d:DesignWidth="1280">
+
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+        <Style x:Key="SwitchStyle" TargetType="CheckBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <Grid x:Name="BackgroundGrid" Width="36" Height="18">
+                            <Rectangle x:Name="BackgroundRect" Fill="#33FFFFFF" RadiusX="9" RadiusY="9"/>
+                            <Ellipse x:Name="Dot" Fill="White" Width="14" Height="14" HorizontalAlignment="Left" Margin="2,0"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="BackgroundRect" Property="Fill" Value="#4CAF50"/>
+                                <Setter TargetName="Dot" Property="HorizontalAlignment" Value="Right"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <Border Background="{StaticResource SecondaryBrushDark}" Padding="16,10">
+        <Grid VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Buscador -->
+            <Border Grid.Column="0" Height="38" CornerRadius="12" Background="{StaticResource BackgroundBrush}" Padding="12,0" MaxWidth="800" HorizontalAlignment="Left" Width="400">
+                <TextBox Text="Buscar..." BorderThickness="0" Background="Transparent" VerticalContentAlignment="Center"/>
+            </Border>
+
+            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+
+                <!-- SWITCH -->
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center"
+                            Visibility="{Binding DataContext.IsAdmin, 
+                         RelativeSource={RelativeSource AncestorType=Window}, 
+                         Converter={StaticResource BoolToVis}}">
+                    <TextBlock Text="LOGS" FontSize="11" FontWeight="Bold" Foreground="White" Margin="0,0,8,0" Opacity="0.7"/>
+                    <CheckBox Style="{StaticResource SwitchStyle}" 
+                              IsChecked="{Binding LogsEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              Cursor="Hand" />
+                    <Border BorderThickness="1" Width="1" Height="26" BorderBrush="White" Margin="16,0" Opacity="0.2"/>
+                </StackPanel>
+
+                <!-- DATOS REALES DEL USUARIO -->
+                <StackPanel VerticalAlignment="Center" Margin="0,0,12,0">
+                    <TextBlock Text="{Binding UserName}" FontSize="14" FontWeight="SemiBold" Foreground="White" TextAlignment="Right"/>
+                    <TextBlock Text="{Binding UserRole}" FontSize="12" Foreground="#CCFFFFFF" TextAlignment="Right"/>
+                </StackPanel>
+
+                <Ellipse Width="35" Height="35" Fill="{StaticResource BackgroundBrush}"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>

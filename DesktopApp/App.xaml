@@ -1,0 +1,23 @@
+﻿<Application x:Class="DesktopApp.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:conv="clr-namespace:DesktopApp.Converters"
+             StartupUri="MainWindow.xaml">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Themes/Colors.xaml"/>
+                <ResourceDictionary Source="Themes/Brushes.xaml"/>
+                <ResourceDictionary Source="Themes/Styles.xaml"/>
+                <ResourceDictionary Source="/Resources/Icons.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+
+            <conv:ApiImageToUrlConverter x:Key="ApiImageConverter"/>
+
+        </ResourceDictionary>
+    </Application.Resources>
+
+</Application>

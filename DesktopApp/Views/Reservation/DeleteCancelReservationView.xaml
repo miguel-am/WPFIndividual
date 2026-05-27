@@ -1,0 +1,61 @@
+﻿<Window x:Class="DesktopApp.Views.Reservation.DeleteCancelledReservationsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignHeight="400" d:DesignWidth="600"
+        Icon="/Resources/images/icoproyecto.ico">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Margin="0,0,0,15">
+            <TextBlock Text="Eliminación de reservas" FontSize="22" FontWeight="Bold" Foreground="#2C3E50"/>
+            <TextBlock Text="Borrar reservas canceladas" Foreground="Gray"/>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Margin="10" Grid.Row="1">
+            <Grid Margin="0,0,0,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                
+                <StackPanel Orientation="Horizontal" Grid.Column="1">
+                    
+                    <Button Content="Eliminar Reserva" Margin="10,0,0,10" 
+                            Command="{Binding DeleteReservationCommand}" 
+                            Style="{StaticResource ActionButton}" 
+                            Background="#111827" 
+                            Foreground="White"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="0" Orientation="Horizontal" Grid.Row="1">
+                    <TextBox x:Name="txtBuscar" Style="{StaticResource InputTextBox}" Width="200" Margin="10,0,0,10" Text="{Binding TextoBusqueda, UpdateSourceTrigger=PropertyChanged}" FontSize="15"/>
+                    <Button Content="Limpiar" Command="{Binding LimpiarCommand}"  Margin="20,0,0,10" Style="{StaticResource ActionButton}" Background="#6B7280"/>
+                </StackPanel>
+            </Grid>
+
+            <DataGrid x:Name="dgReservation"
+              AutoGenerateColumns="False"
+              IsReadOnly="True"
+              Margin="10" 
+              Style="{StaticResource ModernDataGrid}"
+              ItemsSource="{Binding Reservas}"
+              SelectedItem="{Binding SelectedReservation, Mode=TwoWay}">
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="*" />
+                    <DataGridTextColumn Header="Usuario(DNI)" Binding="{Binding UserDNI}" Width="*" />
+                    <DataGridTextColumn Header="Usuario(Nombre)" Binding="{Binding UserNombre}" Width="*" />
+                    <DataGridTextColumn Header="Habitaciones" Binding="{Binding RoomNumbers}" Width="*" />
+                    <DataGridTextColumn Header="Entrada" Binding="{Binding CheckIn, StringFormat=dd/MM/yyyy}" Width="*" />
+                    <DataGridTextColumn Header="Salida" Binding="{Binding CheckOut, StringFormat=dd/MM/yyyy}" Width="*" />
+                    <DataGridTextColumn Header="Estado" Binding="{Binding Status}" Width="*" />
+                    <DataGridTextColumn Header="Precio Total" Binding="{Binding TotalPrice}" Width="*" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </Grid>
+</Window>
